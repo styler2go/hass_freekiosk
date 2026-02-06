@@ -7,7 +7,12 @@ from typing import Any
 import voluptuous as vol
 from homeassistant import config_entries
 from homeassistant.const import CONF_API_KEY
-from homeassistant.helpers import selector
+from homeassistant.helpers import config_validation as cv
+
+try:  # Older HA versions may not ship selector support.
+    from homeassistant.helpers import selector
+except ImportError:  # pragma: no cover - compatibility fallback
+    selector = None
 from homeassistant.helpers.aiohttp_client import async_get_clientsession
 
 from .api import (
@@ -60,36 +65,7 @@ class FreeKioskConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
 
         return self.async_show_form(
             step_id="user",
-            data_schema=vol.Schema(
-                {
-                    vol.Required(
-                        CONF_DEVICE_URL,
-                        default=(user_input or {}).get(CONF_DEVICE_URL),
-                    ): selector.TextSelector(
-                        selector.TextSelectorConfig(
-                            # Older HA versions don't support URL type yet.
-                            type=getattr(
-                                selector.TextSelectorType,
-                                "URL",
-                                selector.TextSelectorType.TEXT,
-                            ),
-                            placeholder="http://192.168.1.50:8080",
-                        )
-                    ),
-                    vol.Optional(
-                        CONF_API_KEY,
-                        default=(user_input or {}).get(CONF_API_KEY),
-                    ): selector.TextSelector(
-                        selector.TextSelectorConfig(
-                            type=getattr(
-                                selector.TextSelectorType,
-                                "PASSWORD",
-                                selector.TextSelectorType.TEXT,
-                            ),
-                        )
-                    ),
-                }
-            ),
+            data_schema=_build_user_schema(user_input),
             errors=errors,
         )
 
@@ -104,3 +80,52 @@ class FreeKioskConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
         if not response.get("success"):
             LOGGER.debug("Health check did not return success: %s", response)
             raise FreeKioskApiClientCommunicationError
+
+
+def _build_user_schema(user_input: dict[str, Any] | None) -> vol.Schema:
+    defaults = user_input or {}
+    if selector and hasattr(selector, "TextSelector"):
+        return vol.Schema(
+            {
+                vol.Required(
+                    CONF_DEVICE_URL,
+                    default=defaults.get(CONF_DEVICE_URL),
+                ): selector.TextSelector(
+                    selector.TextSelectorConfig(
+                        # Older HA versions don't support URL type yet.
+                        type=getattr(
+                            selector.TextSelectorType,
+                            "URL",
+                            selector.TextSelectorType.TEXT,
+                        ),
+                        placeholder="http://192.168.1.50:8080",
+                    )
+                ),
+                vol.Optional(
+                    CONF_API_KEY,
+                    default=defaults.get(CONF_API_KEY),
+                ): selector.TextSelector(
+                    selector.TextSelectorConfig(
+                        type=getattr(
+                            selector.TextSelectorType,
+                            "PASSWORD",
+                            selector.TextSelectorType.TEXT,
+                        ),
+                    )
+                ),
+            }
+        )
+
+    # Fallback for older HA builds without selector support.
+    return vol.Schema(
+        {
+            vol.Required(
+                CONF_DEVICE_URL,
+                default=defaults.get(CONF_DEVICE_URL),
+            ): cv.string,
+            vol.Optional(
+                CONF_API_KEY,
+                default=defaults.get(CONF_API_KEY),
+            ): cv.string,
+        }
+    )
