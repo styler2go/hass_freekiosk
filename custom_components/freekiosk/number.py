@@ -99,7 +99,7 @@ class FreeKioskNumber(FreeKioskEntity, NumberEntity):
 
     async def async_set_native_value(self, value: float) -> None:
         """Update the value on the FreeKiosk device."""
-        payload = {"value": int(round(value))}
+        payload = {"value": round(value)}
         await self.coordinator.config_entry.runtime_data.client.async_post_command(
             self.entity_description.set_endpoint,
             payload,

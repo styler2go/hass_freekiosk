@@ -47,6 +47,17 @@ REMOTE_COMMANDS = (
 )
 
 
+def _build_audio_payload(call: ServiceCall) -> dict[str, Any]:
+    payload: dict[str, Any] = {"url": call.data["url"]}
+    loop = call.data.get("loop")
+    if loop is not None:
+        payload["loop"] = loop
+    volume = call.data.get("volume")
+    if volume is not None:
+        payload["volume"] = volume
+    return payload
+
+
 SERVICES: dict[str, _ServiceDefinition] = {
     "screen_on": _ServiceDefinition(endpoint="/api/screen/on"),
     "screen_off": _ServiceDefinition(endpoint="/api/screen/off"),
@@ -97,7 +108,7 @@ SERVICES: dict[str, _ServiceDefinition] = {
     ),
     "play_audio": _ServiceDefinition(
         endpoint="/api/audio/play",
-        payload=lambda call: _build_audio_payload(call),
+        payload=_build_audio_payload,
         schema_extra={
             vol.Required("url"): cv.string,
             vol.Optional("loop"): vol.Boolean,
@@ -131,17 +142,6 @@ SERVICES: dict[str, _ServiceDefinition] = {
         schema_extra={vol.Required("command"): vol.In(REMOTE_COMMANDS)},
     ),
 }
-
-
-def _build_audio_payload(call: ServiceCall) -> dict[str, Any]:
-    payload: dict[str, Any] = {"url": call.data["url"]}
-    loop = call.data.get("loop")
-    if loop is not None:
-        payload["loop"] = loop
-    volume = call.data.get("volume")
-    if volume is not None:
-        payload["volume"] = volume
-    return payload
 
 
 _SERVICES_REGISTERED_KEY = "services_registered"
