@@ -35,7 +35,7 @@ class FreeKioskScreenshotCamera(FreeKioskEntity, Camera):
 
     def __init__(self, coordinator: FreeKioskDataUpdateCoordinator) -> None:
         """Initialize the camera entity."""
-        super().__init__(coordinator)
+        super().__init__(coordinator, unique_id="screenshot")
 
     async def async_camera_image(
         self, _width: int | None = None, _height: int | None = None

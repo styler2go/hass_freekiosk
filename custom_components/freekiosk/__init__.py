@@ -42,6 +42,7 @@ async def async_setup_entry(
         name=DOMAIN,
         update_interval=timedelta(seconds=DEFAULT_SCAN_INTERVAL),
     )
+    coordinator.config_entry = entry
 
     entry.runtime_data = FreeKioskData(
         client=FreeKioskApiClient(

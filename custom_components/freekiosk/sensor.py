@@ -144,7 +144,7 @@ class FreeKioskStatusSensor(FreeKioskEntity, SensorEntity):
         entity_description: FreeKioskSensorDescription,
     ) -> None:
         """Initialize the sensor."""
-        super().__init__(coordinator)
+        super().__init__(coordinator, unique_id=f"sensor_{entity_description.key}")
         self.entity_description = entity_description
 
     @property

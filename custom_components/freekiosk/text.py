@@ -32,7 +32,7 @@ class FreeKioskUrlText(FreeKioskEntity, TextEntity):
 
     def __init__(self, coordinator: FreeKioskDataUpdateCoordinator) -> None:
         """Initialize the text entity."""
-        super().__init__(coordinator)
+        super().__init__(coordinator, unique_id="webview_url")
         self._attr_name = "FreeKiosk WebView URL"
 
     @property

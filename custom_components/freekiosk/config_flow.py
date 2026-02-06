@@ -32,9 +32,10 @@ class FreeKioskConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
         errors: dict[str, str] = {}
         if user_input is not None:
             try:
+                api_key = user_input.get(CONF_API_KEY) or None
                 await self._test_connection(
                     url=user_input[CONF_DEVICE_URL],
-                    api_key=user_input.get(CONF_API_KEY),
+                    api_key=api_key,
                 )
             except FreeKioskApiClientAuthenticationError as err:
                 LOGGER.debug("Authentication failed: %s", err)
@@ -54,7 +55,7 @@ class FreeKioskConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
                     title=user_input[CONF_DEVICE_URL],
                     data={
                         CONF_DEVICE_URL: normalized_url,
-                        CONF_API_KEY: user_input.get(CONF_API_KEY),
+                        CONF_API_KEY: api_key,
                     },
                 )
 

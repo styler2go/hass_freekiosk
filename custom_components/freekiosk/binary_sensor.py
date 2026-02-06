@@ -94,7 +94,7 @@ class FreeKioskStatusBinarySensor(FreeKioskEntity, BinarySensorEntity):
         entity_description: FreeKioskBinarySensorDescription,
     ) -> None:
         """Initialize the binary sensor."""
-        super().__init__(coordinator)
+        super().__init__(coordinator, unique_id=f"binary_{entity_description.key}")
         self.entity_description = entity_description
 
     @property
