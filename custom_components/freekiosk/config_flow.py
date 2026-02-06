@@ -4,15 +4,10 @@ from __future__ import annotations
 
 from typing import Any
 
+import homeassistant.helpers.config_validation as cv
 import voluptuous as vol
 from homeassistant import config_entries
 from homeassistant.const import CONF_API_KEY
-from homeassistant.helpers import config_validation as cv
-
-try:  # Older HA versions may not ship selector support.
-    from homeassistant.helpers import selector
-except ImportError:  # pragma: no cover - compatibility fallback
-    selector = None
 from homeassistant.helpers.aiohttp_client import async_get_clientsession
 
 from .api import (
@@ -84,39 +79,6 @@ class FreeKioskConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
 
 def _build_user_schema(user_input: dict[str, Any] | None) -> vol.Schema:
     defaults = user_input or {}
-    if selector and hasattr(selector, "TextSelector"):
-        return vol.Schema(
-            {
-                vol.Required(
-                    CONF_DEVICE_URL,
-                    default=defaults.get(CONF_DEVICE_URL),
-                ): selector.TextSelector(
-                    selector.TextSelectorConfig(
-                        # Older HA versions don't support URL type yet.
-                        type=getattr(
-                            selector.TextSelectorType,
-                            "URL",
-                            selector.TextSelectorType.TEXT,
-                        ),
-                        placeholder="http://192.168.1.50:8080",
-                    )
-                ),
-                vol.Optional(
-                    CONF_API_KEY,
-                    default=defaults.get(CONF_API_KEY),
-                ): selector.TextSelector(
-                    selector.TextSelectorConfig(
-                        type=getattr(
-                            selector.TextSelectorType,
-                            "PASSWORD",
-                            selector.TextSelectorType.TEXT,
-                        ),
-                    )
-                ),
-            }
-        )
-
-    # Fallback for older HA builds without selector support.
     return vol.Schema(
         {
             vol.Required(
