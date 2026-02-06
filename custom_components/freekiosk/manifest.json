@@ -1,0 +1,8 @@
+{
+  "domain": "freekiosk",
+  "name": "FreeKiosk",
+  "config_flow": true,
+  "documentation": "https://github.com/your-org/freekiosk",
+  "iot_class": "local_polling",
+  "version": "0.1.0"
+}

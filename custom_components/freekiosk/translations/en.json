@@ -1,0 +1,21 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "description": "Supply the FreeKiosk device HTTP address and an optional API key.",
+        "data": {
+          "url": "Device URL",
+          "api_key": "API Key"
+        }
+      }
+    },
+    "error": {
+      "auth": "API key rejected.",
+      "connection": "Unable to reach the FreeKiosk device.",
+      "unknown": "Unexpected error encountered."
+    },
+    "abort": {
+      "already_configured": "This FreeKiosk device is already configured."
+    }
+  }
+}
