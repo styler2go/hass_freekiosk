@@ -7,8 +7,7 @@ from dataclasses import dataclass
 from typing import TYPE_CHECKING, Any
 
 import voluptuous as vol
-from homeassistant.config_entries import ConfigEntryState
-from homeassistant.const import CONF_ENTRY_ID
+from homeassistant.config_entries import CONF_ENTRY_ID, ConfigEntryState
 from homeassistant.exceptions import HomeAssistantError
 from homeassistant.helpers import config_validation as cv
 
