@@ -44,17 +44,30 @@ Returns complete device status in one call.
 {
   "success": true,
   "data": {
-    "battery": { "level": 85, "charging": true, "temperature": 25.5 },
+    "battery": { "level": 85, "charging": true, "plugged": "ac" },
     "screen": { "on": true, "brightness": 75, "screensaverActive": false },
+    "audio": { "volume": 50 },
     "webview": { "currentUrl": "http://...", "canGoBack": false, "loading": false },
-    "device": { "model": "SM-T510", "manufacturer": "samsung", "android": "11" },
-    "wifi": { "connected": true, "ssid": "Home", "rssi": -45, "ip": "192.168.1.50" },
+    "device": {
+      "ip": "192.168.1.50",
+      "hostname": "freekiosk",
+      "version": "1.2.3",
+      "isDeviceOwner": false,
+      "kioskMode": true
+    },
+    "wifi": {
+      "connected": true,
+      "ssid": "Home",
+      "signalStrength": -45,
+      "signalLevel": 70,
+      "linkSpeed": 90,
+      "frequency": 5240
+    },
+    "rotation": { "enabled": false, "urls": [], "interval": 30, "currentIndex": 0 },
     "sensors": { "light": 150.5, "proximity": 5, "accelerometer": {...} },
     "autoBrightness": { "enabled": true, "min": 10, "max": 100, "currentLightLevel": 150.5 },
-    "kiosk": { "enabled": true, "pinEnabled": true },
-    "audio": { "volume": 50 },
-    "storage": { "totalMB": 32000, "availableMB": 15000 },
-    "memory": { "totalMB": 4096, "availableMB": 2048 }
+    "storage": { "totalMB": 32000, "availableMB": 15000, "usedMB": 17000, "usedPercent": 53 },
+    "memory": { "totalMB": 4096, "availableMB": 2048, "usedMB": 2048, "usedPercent": 50, "lowMemory": false }
   },
   "timestamp": 1704672000
 }
@@ -67,8 +80,7 @@ Returns complete device status in one call.
   "data": {
     "level": 85,
     "charging": true,
-    "temperature": 25.5,
-    "health": "good"
+    "plugged": "ac"
   }
 }
 ```
@@ -140,8 +152,10 @@ Returns light, proximity, and accelerometer data.
   "data": {
     "connected": true,
     "ssid": "HomeNetwork",
-    "rssi": -45,
-    "ip": "192.168.1.50"
+    "signalStrength": -45,
+    "signalLevel": 70,
+    "linkSpeed": 90,
+    "frequency": 5240
   }
 }
 ```
@@ -152,10 +166,11 @@ Device information.
 {
   "success": true,
   "data": {
-    "model": "SM-T510",
-    "manufacturer": "samsung",
-    "android": "11",
-    "appVersion": "1.2.2"
+    "ip": "192.168.1.50",
+    "hostname": "freekiosk",
+    "version": "1.2.3",
+    "isDeviceOwner": false,
+    "kioskMode": true
   }
 }
 ```
@@ -165,7 +180,7 @@ Simple health check.
 ```json
 {
   "success": true,
-  "data": { "status": "ok" }
+  "data": { "status": "ok", "timestamp": 1704672000 }
 }
 ```
 
@@ -210,6 +225,8 @@ Get current auto-brightness status.
   }
 }
 ```
+> ⚠️ **Note**: In v1.2.3 this endpoint returns 404. Auto-brightness details are
+> still included in `/api/status`.
 
 #### `POST /api/screen/on`
 Turn screen on / wake device.

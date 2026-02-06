@@ -88,7 +88,7 @@ def _build_user_schema(user_input: dict[str, Any] | None) -> vol.Schema:
             ): cv.string,
             vol.Optional(
                 CONF_API_KEY,
-                default=defaults.get(CONF_API_KEY),
+                default=defaults.get(CONF_API_KEY, ""),
             ): cv.string,
         }
     )

@@ -65,13 +65,37 @@ BINARY_SENSOR_DESCRIPTIONS: tuple[FreeKioskBinarySensorDescription, ...] = (
         key="kiosk_enabled",
         name="Kiosk Mode Enabled",
         device_class=BinarySensorDeviceClass.SAFETY,
-        value_fn=lambda data: data.get("kiosk", {}).get("enabled") is True,
+        value_fn=lambda data: data.get("device", {}).get("kioskMode") is True,
+    ),
+    FreeKioskBinarySensorDescription(
+        key="device_owner",
+        name="Device Owner Mode",
+        device_class=BinarySensorDeviceClass.SAFETY,
+        value_fn=lambda data: data.get("device", {}).get("isDeviceOwner") is True,
     ),
     FreeKioskBinarySensorDescription(
         key="webview_loading",
         name="WebView Loading",
         device_class=BinarySensorDeviceClass.RUNNING,
         value_fn=lambda data: data.get("webview", {}).get("loading") is True,
+    ),
+    FreeKioskBinarySensorDescription(
+        key="webview_can_go_back",
+        name="WebView Can Go Back",
+        device_class=BinarySensorDeviceClass.RUNNING,
+        value_fn=lambda data: data.get("webview", {}).get("canGoBack") is True,
+    ),
+    FreeKioskBinarySensorDescription(
+        key="rotation_enabled",
+        name="Rotation Enabled",
+        device_class=BinarySensorDeviceClass.RUNNING,
+        value_fn=lambda data: data.get("rotation", {}).get("enabled") is True,
+    ),
+    FreeKioskBinarySensorDescription(
+        key="memory_low",
+        name="Low Memory",
+        device_class=BinarySensorDeviceClass.PROBLEM,
+        value_fn=lambda data: data.get("memory", {}).get("lowMemory") is True,
     ),
 )
 
