@@ -7,11 +7,16 @@ from dataclasses import dataclass
 from typing import TYPE_CHECKING, Any
 
 import voluptuous as vol
-from homeassistant.config_entries import CONF_ENTRY_ID, ConfigEntryState
+from homeassistant.config_entries import ConfigEntryState
 from homeassistant.exceptions import HomeAssistantError
 from homeassistant.helpers import config_validation as cv
 
 from .const import CONF_DEVICE_URL, DOMAIN, LOGGER
+
+try:
+    from homeassistant.const import CONF_ENTRY_ID
+except ImportError:  # pragma: no cover - compatibility fallback
+    from homeassistant.config_entries import CONF_ENTRY_ID
 
 if TYPE_CHECKING:
     from collections.abc import Callable, Mapping
