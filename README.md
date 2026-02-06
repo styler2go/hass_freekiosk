@@ -45,6 +45,10 @@ Binary sensors include:
 - `binary_sensor.freekiosk_autobrightness_enabled`
 - `binary_sensor.freekiosk_kiosk_enabled`
 
+Text entity:
+
+- `text.freekiosk_webview_url`
+
 ## API coverage
 
 - `GET /api/status`

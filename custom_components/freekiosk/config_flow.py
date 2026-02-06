@@ -8,7 +8,7 @@ import voluptuous as vol
 from homeassistant import config_entries
 from homeassistant.const import CONF_API_KEY
 from homeassistant.helpers import selector
-from homeassistant.helpers.aiohttp_client import async_create_clientsession
+from homeassistant.helpers.aiohttp_client import async_get_clientsession
 
 from .api import (
     FreeKioskApiClient,
@@ -89,6 +89,6 @@ class FreeKioskConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
         client = FreeKioskApiClient(
             base_url=url,
             api_key=api_key,
-            session=async_create_clientsession(self.hass),
+            session=async_get_clientsession(self.hass),
         )
         await client.async_get_status()
