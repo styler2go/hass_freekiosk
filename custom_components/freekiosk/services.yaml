@@ -1,0 +1,324 @@
+screen_on:
+  name: Screen on
+  description: Turn the FreeKiosk screen on.
+  fields:
+    entry_id:
+      name: Config entry id
+      description: Target the FreeKiosk config entry id.
+      example: "01J7ZK0P8M4E5M7W0M0Q5Y6B9E"
+    device_url:
+      name: Device URL
+      description: Target the FreeKiosk device URL.
+      example: "http://192.168.1.50:8080"
+
+screen_off:
+  name: Screen off
+  description: Turn the FreeKiosk screen off.
+  fields:
+    entry_id:
+      name: Config entry id
+      description: Target the FreeKiosk config entry id.
+      example: "01J7ZK0P8M4E5M7W0M0Q5Y6B9E"
+    device_url:
+      name: Device URL
+      description: Target the FreeKiosk device URL.
+      example: "http://192.168.1.50:8080"
+
+screensaver_on:
+  name: Screensaver on
+  description: Enable the FreeKiosk screensaver.
+  fields:
+    entry_id:
+      name: Config entry id
+      description: Target the FreeKiosk config entry id.
+      example: "01J7ZK0P8M4E5M7W0M0Q5Y6B9E"
+    device_url:
+      name: Device URL
+      description: Target the FreeKiosk device URL.
+      example: "http://192.168.1.50:8080"
+
+screensaver_off:
+  name: Screensaver off
+  description: Disable the FreeKiosk screensaver.
+  fields:
+    entry_id:
+      name: Config entry id
+      description: Target the FreeKiosk config entry id.
+      example: "01J7ZK0P8M4E5M7W0M0Q5Y6B9E"
+    device_url:
+      name: Device URL
+      description: Target the FreeKiosk device URL.
+      example: "http://192.168.1.50:8080"
+
+reload:
+  name: Reload
+  description: Reload the FreeKiosk content.
+  fields:
+    entry_id:
+      name: Config entry id
+      description: Target the FreeKiosk config entry id.
+      example: "01J7ZK0P8M4E5M7W0M0Q5Y6B9E"
+    device_url:
+      name: Device URL
+      description: Target the FreeKiosk device URL.
+      example: "http://192.168.1.50:8080"
+
+wake:
+  name: Wake
+  description: Wake the FreeKiosk device.
+  fields:
+    entry_id:
+      name: Config entry id
+      description: Target the FreeKiosk config entry id.
+      example: "01J7ZK0P8M4E5M7W0M0Q5Y6B9E"
+    device_url:
+      name: Device URL
+      description: Target the FreeKiosk device URL.
+      example: "http://192.168.1.50:8080"
+
+clear_cache:
+  name: Clear cache
+  description: Clear the FreeKiosk browser cache.
+  fields:
+    entry_id:
+      name: Config entry id
+      description: Target the FreeKiosk config entry id.
+      example: "01J7ZK0P8M4E5M7W0M0Q5Y6B9E"
+    device_url:
+      name: Device URL
+      description: Target the FreeKiosk device URL.
+      example: "http://192.168.1.50:8080"
+
+reboot:
+  name: Reboot
+  description: Reboot the FreeKiosk device.
+  fields:
+    entry_id:
+      name: Config entry id
+      description: Target the FreeKiosk config entry id.
+      example: "01J7ZK0P8M4E5M7W0M0Q5Y6B9E"
+    device_url:
+      name: Device URL
+      description: Target the FreeKiosk device URL.
+      example: "http://192.168.1.50:8080"
+
+set_brightness:
+  name: Set brightness
+  description: Set the FreeKiosk screen brightness.
+  fields:
+    entry_id:
+      name: Config entry id
+      description: Target the FreeKiosk config entry id.
+      example: "01J7ZK0P8M4E5M7W0M0Q5Y6B9E"
+    device_url:
+      name: Device URL
+      description: Target the FreeKiosk device URL.
+      example: "http://192.168.1.50:8080"
+    value:
+      name: Brightness
+      description: Brightness percentage (0-100).
+      example: 75
+
+set_volume:
+  name: Set volume
+  description: Set the FreeKiosk audio volume.
+  fields:
+    entry_id:
+      name: Config entry id
+      description: Target the FreeKiosk config entry id.
+      example: "01J7ZK0P8M4E5M7W0M0Q5Y6B9E"
+    device_url:
+      name: Device URL
+      description: Target the FreeKiosk device URL.
+      example: "http://192.168.1.50:8080"
+    value:
+      name: Volume
+      description: Volume percentage (0-100).
+      example: 40
+
+navigate_url:
+  name: Navigate URL
+  description: Navigate the FreeKiosk browser to a URL.
+  fields:
+    entry_id:
+      name: Config entry id
+      description: Target the FreeKiosk config entry id.
+      example: "01J7ZK0P8M4E5M7W0M0Q5Y6B9E"
+    device_url:
+      name: Device URL
+      description: Target the FreeKiosk device URL.
+      example: "http://192.168.1.50:8080"
+    url:
+      name: URL
+      description: The URL to load on the kiosk.
+      example: "https://www.home-assistant.io"
+
+tts:
+  name: Text to speech
+  description: Speak text on the FreeKiosk device.
+  fields:
+    entry_id:
+      name: Config entry id
+      description: Target the FreeKiosk config entry id.
+      example: "01J7ZK0P8M4E5M7W0M0Q5Y6B9E"
+    device_url:
+      name: Device URL
+      description: Target the FreeKiosk device URL.
+      example: "http://192.168.1.50:8080"
+    text:
+      name: Text
+      description: Text to speak.
+      example: "Hallo, hier ist FreeKiosk."
+
+toast:
+  name: Toast
+  description: Show a toast message on the FreeKiosk device.
+  fields:
+    entry_id:
+      name: Config entry id
+      description: Target the FreeKiosk config entry id.
+      example: "01J7ZK0P8M4E5M7W0M0Q5Y6B9E"
+    device_url:
+      name: Device URL
+      description: Target the FreeKiosk device URL.
+      example: "http://192.168.1.50:8080"
+    text:
+      name: Text
+      description: Text to display.
+      example: "Willkommen!"
+
+execute_js:
+  name: Execute JS
+  description: Execute JavaScript in the FreeKiosk browser context.
+  fields:
+    entry_id:
+      name: Config entry id
+      description: Target the FreeKiosk config entry id.
+      example: "01J7ZK0P8M4E5M7W0M0Q5Y6B9E"
+    device_url:
+      name: Device URL
+      description: Target the FreeKiosk device URL.
+      example: "http://192.168.1.50:8080"
+    code:
+      name: Code
+      description: JavaScript to execute.
+      example: "document.body.style.background = 'black';"
+
+launch_app:
+  name: Launch app
+  description: Launch an installed app by Android package name.
+  fields:
+    entry_id:
+      name: Config entry id
+      description: Target the FreeKiosk config entry id.
+      example: "01J7ZK0P8M4E5M7W0M0Q5Y6B9E"
+    device_url:
+      name: Device URL
+      description: Target the FreeKiosk device URL.
+      example: "http://192.168.1.50:8080"
+    package:
+      name: Package
+      description: Android package name to launch.
+      example: "com.android.settings"
+
+play_audio:
+  name: Play audio
+  description: Play audio from a URL on the FreeKiosk device.
+  fields:
+    entry_id:
+      name: Config entry id
+      description: Target the FreeKiosk config entry id.
+      example: "01J7ZK0P8M4E5M7W0M0Q5Y6B9E"
+    device_url:
+      name: Device URL
+      description: Target the FreeKiosk device URL.
+      example: "http://192.168.1.50:8080"
+    url:
+      name: URL
+      description: Audio URL to play.
+      example: "https://example.com/alert.mp3"
+    loop:
+      name: Loop
+      description: Loop playback until stopped.
+      example: false
+    volume:
+      name: Volume
+      description: Volume percentage (0-100).
+      example: 60
+
+stop_audio:
+  name: Stop audio
+  description: Stop audio playback.
+  fields:
+    entry_id:
+      name: Config entry id
+      description: Target the FreeKiosk config entry id.
+      example: "01J7ZK0P8M4E5M7W0M0Q5Y6B9E"
+    device_url:
+      name: Device URL
+      description: Target the FreeKiosk device URL.
+      example: "http://192.168.1.50:8080"
+
+beep:
+  name: Beep
+  description: Play a short beep sound.
+  fields:
+    entry_id:
+      name: Config entry id
+      description: Target the FreeKiosk config entry id.
+      example: "01J7ZK0P8M4E5M7W0M0Q5Y6B9E"
+    device_url:
+      name: Device URL
+      description: Target the FreeKiosk device URL.
+      example: "http://192.168.1.50:8080"
+
+enable_auto_brightness:
+  name: Enable auto brightness
+  description: Enable automatic brightness with optional min/max values.
+  fields:
+    entry_id:
+      name: Config entry id
+      description: Target the FreeKiosk config entry id.
+      example: "01J7ZK0P8M4E5M7W0M0Q5Y6B9E"
+    device_url:
+      name: Device URL
+      description: Target the FreeKiosk device URL.
+      example: "http://192.168.1.50:8080"
+    min:
+      name: Minimum
+      description: Minimum brightness percentage (0-100).
+      example: 10
+    max:
+      name: Maximum
+      description: Maximum brightness percentage (0-100).
+      example: 100
+
+disable_auto_brightness:
+  name: Disable auto brightness
+  description: Disable automatic brightness.
+  fields:
+    entry_id:
+      name: Config entry id
+      description: Target the FreeKiosk config entry id.
+      example: "01J7ZK0P8M4E5M7W0M0Q5Y6B9E"
+    device_url:
+      name: Device URL
+      description: Target the FreeKiosk device URL.
+      example: "http://192.168.1.50:8080"
+
+remote_command:
+  name: Remote command
+  description: Send a remote control command.
+  fields:
+    entry_id:
+      name: Config entry id
+      description: Target the FreeKiosk config entry id.
+      example: "01J7ZK0P8M4E5M7W0M0Q5Y6B9E"
+    device_url:
+      name: Device URL
+      description: Target the FreeKiosk device URL.
+      example: "http://192.168.1.50:8080"
+    command:
+      name: Command
+      description: Remote command to send (up, down, left, right, select, back, home, menu, playpause).
+      example: "home"
