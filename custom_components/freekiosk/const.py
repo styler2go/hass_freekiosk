@@ -10,5 +10,7 @@ DOMAIN = "freekiosk"
 ATTRIBUTION = "Data provided by FreeKiosk."
 DEFAULT_SCAN_INTERVAL = 30
 REST_ENDPOINT_STATUS = "/api/status"
+REST_ENDPOINT_HEALTH = "/api/health"
+REST_ENDPOINT_SCREENSHOT = "/api/screenshot"
 CONF_DEVICE_URL = CONF_URL
 CONF_HEADER_API_KEY = "X-Api-Key"

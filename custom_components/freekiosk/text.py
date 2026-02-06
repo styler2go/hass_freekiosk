@@ -2,19 +2,22 @@
 
 from __future__ import annotations
 
-from typing import Any
+from typing import TYPE_CHECKING
 
 from homeassistant.components.text import TextEntity
-from homeassistant.core import HomeAssistant
-from homeassistant.helpers.entity_platform import AddEntitiesCallback
 
-from .coordinator import FreeKioskDataUpdateCoordinator
-from .data import FreeKioskConfigEntry
 from .entity import FreeKioskEntity
+
+if TYPE_CHECKING:
+    from homeassistant.core import HomeAssistant
+    from homeassistant.helpers.entity_platform import AddEntitiesCallback
+
+    from .coordinator import FreeKioskDataUpdateCoordinator
+    from .data import FreeKioskConfigEntry
 
 
 async def async_setup_entry(
-    hass: HomeAssistant,
+    _hass: HomeAssistant,
     entry: FreeKioskConfigEntry,
     async_add_entities: AddEntitiesCallback,
 ) -> None:
@@ -28,6 +31,7 @@ class FreeKioskUrlText(FreeKioskEntity, TextEntity):
     _attr_icon = "mdi:web"
 
     def __init__(self, coordinator: FreeKioskDataUpdateCoordinator) -> None:
+        """Initialize the text entity."""
         super().__init__(coordinator)
         self._attr_name = "FreeKiosk WebView URL"
 
@@ -43,4 +47,3 @@ class FreeKioskUrlText(FreeKioskEntity, TextEntity):
             {"url": value},
         )
         await self.coordinator.async_request_refresh()
-*** End Patch

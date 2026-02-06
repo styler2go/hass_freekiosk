@@ -91,4 +91,7 @@ class FreeKioskConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
             api_key=api_key,
             session=async_get_clientsession(self.hass),
         )
-        await client.async_get_status()
+        response = await client.async_get_health()
+        if not response.get("success"):
+            LOGGER.debug("Health check did not return success: %s", response)
+            raise FreeKioskApiClientCommunicationError
