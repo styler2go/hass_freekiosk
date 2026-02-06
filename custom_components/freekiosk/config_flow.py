@@ -67,7 +67,12 @@ class FreeKioskConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
                         default=(user_input or {}).get(CONF_DEVICE_URL),
                     ): selector.TextSelector(
                         selector.TextSelectorConfig(
-                            type=selector.TextSelectorType.URL,
+                            # Older HA versions don't support URL type yet.
+                            type=getattr(
+                                selector.TextSelectorType,
+                                "URL",
+                                selector.TextSelectorType.TEXT,
+                            ),
                             placeholder="http://192.168.1.50:8080",
                         )
                     ),
@@ -76,7 +81,11 @@ class FreeKioskConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
                         default=(user_input or {}).get(CONF_API_KEY),
                     ): selector.TextSelector(
                         selector.TextSelectorConfig(
-                            type=selector.TextSelectorType.PASSWORD,
+                            type=getattr(
+                                selector.TextSelectorType,
+                                "PASSWORD",
+                                selector.TextSelectorType.TEXT,
+                            ),
                         )
                     ),
                 }
