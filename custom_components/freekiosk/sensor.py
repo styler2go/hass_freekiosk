@@ -10,6 +10,7 @@ from homeassistant.components.sensor import (
     SensorEntity,
     SensorEntityDescription,
 )
+from homeassistant.helpers.entity import EntityCategory
 
 from .entity import FreeKioskEntity
 
@@ -61,6 +62,20 @@ SENSOR_DESCRIPTIONS: tuple[FreeKioskSensorDescription, ...] = (
         value_fn=lambda data: data.get("wifi", {}).get("rssi"),
     ),
     FreeKioskSensorDescription(
+        key="wifi_ssid",
+        name="WiFi SSID",
+        icon="mdi:wifi",
+        entity_category=EntityCategory.DIAGNOSTIC,
+        value_fn=lambda data: data.get("wifi", {}).get("ssid"),
+    ),
+    FreeKioskSensorDescription(
+        key="wifi_ip",
+        name="WiFi IP",
+        icon="mdi:ip-network",
+        entity_category=EntityCategory.DIAGNOSTIC,
+        value_fn=lambda data: data.get("wifi", {}).get("ip"),
+    ),
+    FreeKioskSensorDescription(
         key="storage_available",
         name="Storage Available",
         icon="mdi:harddisk",
@@ -104,6 +119,36 @@ SENSOR_DESCRIPTIONS: tuple[FreeKioskSensorDescription, ...] = (
         value_fn=lambda data: data.get("sensors", {}).get("proximity"),
     ),
     FreeKioskSensorDescription(
+        key="accelerometer_x",
+        name="Accelerometer X",
+        icon="mdi:axis-arrow",
+        native_unit_of_measurement="m/s^2",
+        entity_category=EntityCategory.DIAGNOSTIC,
+        value_fn=lambda data: data.get("sensors", {})
+        .get("accelerometer", {})
+        .get("x"),
+    ),
+    FreeKioskSensorDescription(
+        key="accelerometer_y",
+        name="Accelerometer Y",
+        icon="mdi:axis-arrow",
+        native_unit_of_measurement="m/s^2",
+        entity_category=EntityCategory.DIAGNOSTIC,
+        value_fn=lambda data: data.get("sensors", {})
+        .get("accelerometer", {})
+        .get("y"),
+    ),
+    FreeKioskSensorDescription(
+        key="accelerometer_z",
+        name="Accelerometer Z",
+        icon="mdi:axis-arrow",
+        native_unit_of_measurement="m/s^2",
+        entity_category=EntityCategory.DIAGNOSTIC,
+        value_fn=lambda data: data.get("sensors", {})
+        .get("accelerometer", {})
+        .get("z"),
+    ),
+    FreeKioskSensorDescription(
         key="auto_brightness_level",
         name="Automatic Brightness Level",
         icon="mdi:brightness-6",
@@ -116,6 +161,34 @@ SENSOR_DESCRIPTIONS: tuple[FreeKioskSensorDescription, ...] = (
         icon="mdi:volume-high",
         native_unit_of_measurement="%",
         value_fn=lambda data: data.get("audio", {}).get("volume"),
+    ),
+    FreeKioskSensorDescription(
+        key="health_status",
+        name="Health Status",
+        icon="mdi:heart-pulse",
+        entity_category=EntityCategory.DIAGNOSTIC,
+        value_fn=lambda data: data.get("health", {}).get("status"),
+    ),
+    FreeKioskSensorDescription(
+        key="device_model",
+        name="Device Model",
+        icon="mdi:tablet",
+        entity_category=EntityCategory.DIAGNOSTIC,
+        value_fn=lambda data: data.get("device", {}).get("model"),
+    ),
+    FreeKioskSensorDescription(
+        key="device_android",
+        name="Android Version",
+        icon="mdi:android",
+        entity_category=EntityCategory.DIAGNOSTIC,
+        value_fn=lambda data: data.get("device", {}).get("android"),
+    ),
+    FreeKioskSensorDescription(
+        key="device_manufacturer",
+        name="Manufacturer",
+        icon="mdi:factory",
+        entity_category=EntityCategory.DIAGNOSTIC,
+        value_fn=lambda data: data.get("device", {}).get("manufacturer"),
     ),
 )
 

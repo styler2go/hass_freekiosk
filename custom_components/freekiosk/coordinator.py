@@ -24,7 +24,20 @@ class FreeKioskDataUpdateCoordinator(DataUpdateCoordinator):
     async def _async_update_data(self) -> Any:
         """Fetch latest data."""
         try:
-            return await self.config_entry.runtime_data.client.async_get_status()
+            status = await self.config_entry.runtime_data.client.async_get_status()
+            if not isinstance(status, dict):
+                return status
+            data = status.get("data")
+            if not isinstance(data, dict):
+                data = {}
+            try:
+                health = await self.config_entry.runtime_data.client.async_get_health()
+            except FreeKioskApiClientError:
+                health = None
+            if isinstance(health, dict):
+                data["health"] = health.get("data", health)
+            status["data"] = data
+            return status
         except FreeKioskApiClientAuthenticationError as err:
             raise ConfigEntryAuthFailed(err) from err
         except FreeKioskApiClientError as err:

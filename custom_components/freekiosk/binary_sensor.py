@@ -67,6 +67,12 @@ BINARY_SENSOR_DESCRIPTIONS: tuple[FreeKioskBinarySensorDescription, ...] = (
         device_class=BinarySensorDeviceClass.SAFETY,
         value_fn=lambda data: data.get("kiosk", {}).get("enabled") is True,
     ),
+    FreeKioskBinarySensorDescription(
+        key="webview_loading",
+        name="WebView Loading",
+        device_class=BinarySensorDeviceClass.RUNNING,
+        value_fn=lambda data: data.get("webview", {}).get("loading") is True,
+    ),
 )
 
 
