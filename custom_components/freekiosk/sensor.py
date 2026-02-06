@@ -124,9 +124,7 @@ SENSOR_DESCRIPTIONS: tuple[FreeKioskSensorDescription, ...] = (
         icon="mdi:axis-arrow",
         native_unit_of_measurement="m/s^2",
         entity_category=EntityCategory.DIAGNOSTIC,
-        value_fn=lambda data: data.get("sensors", {})
-        .get("accelerometer", {})
-        .get("x"),
+        value_fn=lambda data: data.get("sensors", {}).get("accelerometer", {}).get("x"),
     ),
     FreeKioskSensorDescription(
         key="accelerometer_y",
@@ -134,9 +132,7 @@ SENSOR_DESCRIPTIONS: tuple[FreeKioskSensorDescription, ...] = (
         icon="mdi:axis-arrow",
         native_unit_of_measurement="m/s^2",
         entity_category=EntityCategory.DIAGNOSTIC,
-        value_fn=lambda data: data.get("sensors", {})
-        .get("accelerometer", {})
-        .get("y"),
+        value_fn=lambda data: data.get("sensors", {}).get("accelerometer", {}).get("y"),
     ),
     FreeKioskSensorDescription(
         key="accelerometer_z",
@@ -144,9 +140,7 @@ SENSOR_DESCRIPTIONS: tuple[FreeKioskSensorDescription, ...] = (
         icon="mdi:axis-arrow",
         native_unit_of_measurement="m/s^2",
         entity_category=EntityCategory.DIAGNOSTIC,
-        value_fn=lambda data: data.get("sensors", {})
-        .get("accelerometer", {})
-        .get("z"),
+        value_fn=lambda data: data.get("sensors", {}).get("accelerometer", {}).get("z"),
     ),
     FreeKioskSensorDescription(
         key="auto_brightness_level",
