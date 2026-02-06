@@ -2,7 +2,9 @@
   "domain": "freekiosk",
   "name": "FreeKiosk",
   "config_flow": true,
-  "documentation": "https://github.com/your-org/freekiosk",
+  "documentation": "https://github.com/styler2go/hass_freekiosk",
+  "issue_tracker": "https://github.com/styler2go/hass_freekiosk/issues",
   "iot_class": "local_polling",
-  "version": "0.1.0"
+  "version": "0.1.0",
+  "codeowners": ["@styler2go"]
 }
